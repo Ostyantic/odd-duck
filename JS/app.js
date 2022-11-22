@@ -16,8 +16,10 @@ let productsArr = [];
 // creating a queue
 let uniqueProducts = [];
 
-
+// setting a counter to keep track of number of clicks
 let clickCounter = 0;
+
+let results = document.getElementById('result');
 
 // Assigning HTML img elements to 3 separate image variables, will be manipulated to add src and alt attributes
 let image1 = document.querySelector('section img:first-child');
@@ -137,14 +139,19 @@ function handleClickedProduct(event) {
   }
 }
 
-// function handleViewResults(event) {
-//   let prodUL = document.querySelector('ul');
+function handleViewResults(event) {
+  let prodUL = document.querySelector('ul');
 
-//   for (let i = 0; i < productsArr.length; i++ ) {
-//     let prodLI = createElement('li');
-//     prodLI.innerText = `${productsArr[i].name} was viewed ${productsArr[i].viewed} times and was clicked on ${productsArr[i].clicked} times!`;
-//   }
-// }
+  for (let i = 0; i < productsArr.length; i++ ) {
+    let prodLI = document.createElement('li');
+    prodLI.innerText = `${productsArr[i].name} was viewed ${productsArr[i].viewed} times and was clicked on ${productsArr[i].clicked} times!`;
+    prodUL.appendChild(prodLI);
+  }
+
+  if (clickCounter > 24) {
+    results.removeEventListener('click', handleViewResults);
+  }
+}
 
 
 renderProductImages();
@@ -152,4 +159,12 @@ renderProductImages();
 image1.addEventListener('click', handleClickedProduct);
 image2.addEventListener('click', handleClickedProduct);
 image3.addEventListener('click', handleClickedProduct);
+results.addEventListener('click', handleViewResults);
 
+
+// ideas for code:
+// add unique products to array
+//
+// .include();
+// .shift();
+// .pop();
