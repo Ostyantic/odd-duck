@@ -13,7 +13,7 @@ console.log('Hello World!');
 let productsArr = [];
 // console.log(productsArr);
 
-// creating a queue
+// creating a queue (for later use)
 let uniqueProducts = [];
 
 // setting a counter to keep track of number of clicks
@@ -80,7 +80,7 @@ function generateRandomProdIndex () {
 // creating a function that renders 3 randomly generated product images
 
 function renderProductImages () {
-  // refer to line 57
+  // refer to line 70
   let index1 = generateRandomProdIndex();
   let index2 = generateRandomProdIndex();
   let index3 = generateRandomProdIndex();
@@ -118,7 +118,7 @@ function renderProductImages () {
   // console.log(prodImg1, prodImg2, prodImg3);
 }
 
-// creating an event handler that records how many times each image is clicked. after
+// creating an event handler that records how many times each image is clicked. afterwards, increments the amount of times the image has been clicked and re-renders each image. Finally, an if statement to keep track of the click counter, once the click counter exceeds 25 clicks, the event listeners for each image is removed.
 function handleClickedProduct(event) {
   clickCounter++;
   let selection = event.target;
@@ -139,7 +139,8 @@ function handleClickedProduct(event) {
   }
 }
 
-function handleViewResults(event) {
+// Event handler for button to view results of how many times each image has been viewed and clicked.
+function handleViewResults() {
   let prodUL = document.querySelector('ul');
 
   for (let i = 0; i < productsArr.length; i++ ) {
@@ -153,9 +154,10 @@ function handleViewResults(event) {
   }
 }
 
-
+// image render (on page load)
 renderProductImages();
 
+// event listeners
 image1.addEventListener('click', handleClickedProduct);
 image2.addEventListener('click', handleClickedProduct);
 image3.addEventListener('click', handleClickedProduct);
