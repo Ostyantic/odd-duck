@@ -13,6 +13,12 @@ console.log('Hello World!');
 let productsArr = [];
 // console.log(productsArr);
 
+// creating a queue
+let uniqueProducts = [];
+
+
+let clickCounter = 0;
+
 // Assigning HTML img elements to 3 separate image variables, will be manipulated to add src and alt attributes
 let image1 = document.querySelector('section img:first-child');
 let image2 = document.querySelector('section img:nth-child(2)');
@@ -107,7 +113,43 @@ function renderProductImages () {
   prodImg2.viewed++;
   prodImg3.viewed++;
 
-  console.log(prodImg1, prodImg2, prodImg3);
+  // console.log(prodImg1, prodImg2, prodImg3);
 }
 
+// creating an event handler that records how many times each image is clicked. after
+function handleClickedProduct(event) {
+  clickCounter++;
+  let selection = event.target;
+
+  for (let i = 0; i < productsArr.length; i++) {
+    if (selection.alt.includes(productsArr[i].name)) {
+      productsArr[i].clicked++;
+      console.log(productsArr[i]);
+    }
+  }
+
+  renderProductImages();
+
+  if (clickCounter > 24) {
+    image1.removeEventListener('click', handleClickedProduct);
+    image2.removeEventListener('click', handleClickedProduct);
+    image3.removeEventListener('click', handleClickedProduct);
+  }
+}
+
+// function handleViewResults(event) {
+//   let prodUL = document.querySelector('ul');
+
+//   for (let i = 0; i < productsArr.length; i++ ) {
+//     let prodLI = createElement('li');
+//     prodLI.innerText = `${productsArr[i].name} was viewed ${productsArr[i].viewed} times and was clicked on ${productsArr[i].clicked} times!`;
+//   }
+// }
+
+
 renderProductImages();
+
+image1.addEventListener('click', handleClickedProduct);
+image2.addEventListener('click', handleClickedProduct);
+image3.addEventListener('click', handleClickedProduct);
+
