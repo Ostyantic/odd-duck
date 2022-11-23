@@ -35,6 +35,7 @@ function Product(name, src) {
   productsArr.push(this);
 }
 
+// creating new products with the Products constructor
 let product1 = new Product ('R2D2 Bag', './Img/bag.jpg');
 let product2 = new Product ('Banana Cutter', './Img/banana.jpg');
 let product3 = new Product ('Tablet TP', './Img/bathroom.jpg');
@@ -55,7 +56,8 @@ let product17 = new Product ('Water Can', './Img/water-can.jpg');
 let product18 = new Product ('Wine Glass', './Img/wine-glass.jpg');
 let product19 = new Product ('Useless Boots', './Img/boots.jpg');
 
-console.log(productsArr);
+// console logging each item in the productsArr array
+// console.log(productsArr);
 
 // -----------------------------------
 // 2. Create an algorithm that will randomly generate three unique product images from the images directory and display them side-by-side-by-side in the browser window.
@@ -149,25 +151,25 @@ function handleViewResults() {
     prodUL.appendChild(prodLI);
   }
 
+  // creating empty arrays for names, views and clicks
   let names = [];
   let views = [];
   let clicks = [];
 
+  // for loop to iterate through each item in the productsArr array, each iteration pushes the current indices name, views, and clicks into their corresponding array.
   for (let i = 0; i < productsArr.length; i++) {
-    let prodName = productsArr[i].name;
-    let prodView = productsArr[i].viewed;
-    let prodClick = productsArr[i].clicked;
-
-    names.push(prodName);
-    views.push(prodView);
-    clicks.push(prodClick);
+    names.push(productsArr[i].name);
+    views.push(productsArr[i].viewed);
+    clicks.push(productsArr[i].clicked);
   }
 
-  console.log(names);
-  console.log(views);
-  console.log(clicks);
+  //console log for testing
+  // console.log(names);
+  // console.log(views);
+  // console.log(clicks);
 
   // Chart sourced from "https://www.chartjs.org/docs/latest/getting-started/"
+  // This chart will render the results of each images views and clicks in a bar graph
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {
