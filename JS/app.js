@@ -126,7 +126,7 @@ function handleClickedProduct(event) {
   for (let i = 0; i < productsArr.length; i++) {
     if (selection.alt.includes(productsArr[i].name)) {
       productsArr[i].clicked++;
-      console.log(productsArr[i]);
+      // console.log(productsArr[i]);
     }
   }
 
@@ -148,6 +148,51 @@ function handleViewResults() {
     prodLI.innerText = `${productsArr[i].name} was viewed ${productsArr[i].viewed} times and was clicked on ${productsArr[i].clicked} times!`;
     prodUL.appendChild(prodLI);
   }
+
+  let names = [];
+  let views = [];
+  let clicks = [];
+
+  for (let i = 0; i < productsArr.length; i++) {
+    let prodName = productsArr[i].name;
+    let prodView = productsArr[i].viewed;
+    let prodClick = productsArr[i].clicked;
+
+    names.push(prodName);
+    views.push(prodView);
+    clicks.push(prodClick);
+  }
+
+  console.log(names);
+  console.log(views);
+  console.log(clicks);
+
+  // Chart sourced from "https://www.chartjs.org/docs/latest/getting-started/"
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: 'Views',
+        data: views,
+        borderWidth: 1
+      },
+      {
+        label: 'Clicks',
+        data: clicks,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 
   if (clickCounter > 24) {
     results.removeEventListener('click', handleViewResults);
