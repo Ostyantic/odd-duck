@@ -36,7 +36,7 @@ function Product(name, src) {
 }
 
 // creating new products with the Products constructor
-let product1 = new Product ('R2D2 Bag', './Img/bag.jpg');
+let product1 = new Product ('R2D2 Bags', './Img/bag.jpg');
 let product2 = new Product ('Banana Cutter', './Img/banana.jpg');
 let product3 = new Product ('Tablet TP', './Img/bathroom.jpg');
 let product4 = new Product ('Breakfast Machine', './Img/breakfast.jpg');
