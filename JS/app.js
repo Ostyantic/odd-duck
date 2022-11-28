@@ -82,21 +82,52 @@ function generateRandomProdIndex () {
 // creating a function that renders 3 randomly generated product images
 
 function renderProductImages () {
-  // refer to line 70
-  let index1 = generateRandomProdIndex();
-  let index2 = generateRandomProdIndex();
-  let index3 = generateRandomProdIndex();
 
-  // created a while loop, if index1 matches either index2 or 3, both 2 and 3 will be reassigned a new randomly generated product index
-  while (index1 === index2 || index1 === index3 || index2 === index3) {
-    index2 = generateRandomProdIndex();
-    index3 = generateRandomProdIndex();
+  // for loop to iterate through
+  for (let i = 0; i < 3; i++) {
+
+    // testing logs to keep track of image iteration
+    console.log('----------------');
+    console.log(`Image ${i+1}`);
+    console.log('----------------');
+
+    while (uniqueProducts.length < 6 ) {
+
+      let randomIndex = generateRandomProdIndex();
+      console.log(`The random product is: ${productsArr[randomIndex].name}`);
+
+      if(!uniqueProducts.includes(productsArr[randomIndex])) {
+        uniqueProducts.push(productsArr[randomIndex]);
+        console.log('the unique products are: ', uniqueProducts);
+      }
+    }
+
+    let firstImageObject = uniqueProducts.shift();
+    let secondImageObject = uniqueProducts.shift();
+    let thirdImageObject = uniqueProducts.shift();
+
+    console.log('The three images are :', firstImageObject, secondImageObject, thirdImageObject);
+    console.log('uniqueProducts after shifts is:', uniqueProducts);
+
+    
+    
   }
 
-  // declaring 3 product image variable and assigning them the value of the randomly generated index from productsArr
-  let prodImg1 = productsArr[index1];
-  let prodImg2 = productsArr[index2];
-  let prodImg3 = productsArr[index3];
+  // // refer to line 70
+  // let index1 = generateRandomProdIndex();
+  // let index2 = generateRandomProdIndex();
+  // let index3 = generateRandomProdIndex();
+
+  // // created a while loop, if index1 matches either index2 or 3, both 2 and 3 will be reassigned a new randomly generated product index
+  // while (index1 === index2 || index1 === index3 || index2 === index3) {
+  //   index2 = generateRandomProdIndex();
+  //   index3 = generateRandomProdIndex();
+  // }
+
+  // // declaring 3 product image variable and assigning them the value of the randomly generated index from productsArr
+  // let prodImg1 = productsArr[index1];
+  // let prodImg2 = productsArr[index2];
+  // let prodImg3 = productsArr[index3];
 
 
   // Using DOM manipulation to change the src, alt and title attributes within the HTML img elements
@@ -217,3 +248,36 @@ results.addEventListener('click', handleViewResults);
 // .include();
 // .shift();
 // .pop();
+
+// new function to render unique images on every iteration
+function newImageRenderFunc () {
+
+  // for loop to iterate through
+  for (let i = 0; i < 3; i++) {
+
+    // testing logs to keep track of image iteration
+    console.log('----------------');
+    console.log(`Image ${i+1}`);
+    console.log('----------------');
+
+    while (uniqueProducts.length < 6 ) {
+
+      let randomIndex = generateRandomProdIndex();
+      console.log(`The random product is: ${productsArr[randomIndex].name}`);
+
+      if(!uniqueProducts.includes(productsArr[randomIndex])) {
+        uniqueProducts.push(productsArr[randomIndex]);
+        console.log('the unique products are: ', uniqueProducts);
+      }
+    }
+
+    let firstImageObject = uniqueProducts.shift();
+    let secondImageObject = uniqueProducts.shift();
+    let thirdImageObject = uniqueProducts.shift();
+
+    console.log('The three images are :', firstImageObject, secondImageObject, thirdImageObject);
+    console.log('uniqueProducts after shifts is:', uniqueProducts);
+  }
+}
+
+newImageRenderFunc();
