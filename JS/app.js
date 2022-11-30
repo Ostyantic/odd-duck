@@ -86,11 +86,11 @@ function renderProductImages () {
   while (uniqueProducts.length < 6 ) {
 
     let randomIndex = generateRandomProdIndex();
-    console.log(`The random product is: ${productsArr[randomIndex].name}`);
+    // console.log(`The random product is: ${productsArr[randomIndex].name}`);
 
     if(!uniqueProducts.includes(productsArr[randomIndex])) {
       uniqueProducts.push(productsArr[randomIndex]);
-      console.log('the unique products are: ', uniqueProducts);
+      // console.log('the unique products are: ', uniqueProducts);
     }
   }
 
@@ -98,8 +98,8 @@ function renderProductImages () {
   let secondImageObject = uniqueProducts.shift();
   let thirdImageObject = uniqueProducts.shift();
 
-  console.log('The three unique images are :', firstImageObject.name, secondImageObject.name, thirdImageObject.name);
-  console.log('The remain unique products after shifts is:', uniqueProducts);
+  // console.log('The three unique images are :', firstImageObject.name, secondImageObject.name, thirdImageObject.name);
+  // console.log('The remain unique products after shifts is:', uniqueProducts);
 
   image1.src = firstImageObject.src;
   image1.alt = firstImageObject.name;
@@ -129,6 +129,23 @@ function handleClickedProduct(event) {
       // console.log(productsArr[i]);
     }
   }
+
+  // Saving productArr to localStorage after every click
+
+  // console logging productsArr before saving (for visibility)
+  // console.log(productsArr);
+
+  // declaring new variable and assigning it a stringified productsArr and console logging for testing
+  let productsArrConvertedForLS = JSON.stringify(productsArr);
+  let clickCounterConvertedForLS = JSON.stringify(clickCounter);
+  console.log(productsArrConvertedForLS);
+  console.log(clickCounterConvertedForLS);
+
+  // setting productsArr into local storage with the name products as the key and console logging for testing
+  localStorage.setItem('products', productsArrConvertedForLS);
+  localStorage.setItem('userClicks', clickCounterConvertedForLS);
+  console.log(localStorage.getItem('products'));
+  console.log(localStorage.getItem('userClicks'));
 
   renderProductImages();
 
