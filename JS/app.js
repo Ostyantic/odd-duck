@@ -19,6 +19,14 @@ let uniqueProducts = [];
 // setting a counter to keep track of number of clicks
 let clickCounter = 0;
 
+// on page load: loading users click counter from LS with an if statement. if the users clicks are less than or equal to 24, the clicks from LS will be loaded and the user can continue. If clicks exceed 24, this if statement is ignored and users click counter starts at 0.
+if (localStorage.getItem('userClicks') <= 24) {
+  let loadedClickCounter = localStorage.getItem('userClicks');
+  clickCounter = JSON.parse(loadedClickCounter);
+} else {
+  localStorage.removeItem('products');
+}
+
 let results = document.getElementById('result');
 
 // Assigning HTML img elements to 3 separate image variables, will be manipulated to add src and alt attributes
@@ -63,6 +71,13 @@ let product19 = new Product ('Useless Boots', './Img/boots.jpg');
 // 2. Create an algorithm that will randomly generate three unique product images from the images directory and display them side-by-side-by-side in the browser window.
 // -----------------------------------
 
+if (localStorage.getItem('products')) {
+  let loadedProductsArr = localStorage.getItem('products');
+  // console.log(loadedProductsArr);
+  productsArr = JSON.parse(loadedProductsArr);
+  // console.log(productsArr);
+}
+// console.log(productsArr);
 
 // creating a function to generate a random index from the productsArr
 function generateRandomProdIndex () {
@@ -138,14 +153,14 @@ function handleClickedProduct(event) {
   // declaring new variable and assigning it a stringified productsArr and console logging for testing
   let productsArrConvertedForLS = JSON.stringify(productsArr);
   let clickCounterConvertedForLS = JSON.stringify(clickCounter);
-  console.log(productsArrConvertedForLS);
-  console.log(clickCounterConvertedForLS);
+  // console.log(productsArrConvertedForLS);
+  // console.log(clickCounterConvertedForLS);
 
   // setting productsArr into local storage with the name products as the key and console logging for testing
   localStorage.setItem('products', productsArrConvertedForLS);
   localStorage.setItem('userClicks', clickCounterConvertedForLS);
-  console.log(localStorage.getItem('products'));
-  console.log(localStorage.getItem('userClicks'));
+  // console.log(localStorage.getItem('products'));
+  // console.log(localStorage.getItem('userClicks'));
 
   renderProductImages();
 
