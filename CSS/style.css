@@ -13,6 +13,8 @@ h1 {
 }
 
 #userResults {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -24,6 +26,9 @@ h1 {
 }
 
 #result {
+  background-color: #00C9A7;
+  border-radius: 10px;
+  box-shadow: dimgray;
   width: 50%;
   margin: auto;
 }
@@ -37,7 +42,7 @@ h1 {
   margin: auto;
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   background-color: green;
 
