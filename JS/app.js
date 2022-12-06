@@ -2,16 +2,8 @@
 
 console.log('Hello World!');
 
-// TODO
-// 1. Create a constructor function that creates an object associated with each product, and has the following properties:
-// Name of the product
-// File path of image
-// Times the image has been shown
-// -----------------------------------
-
 // delcaring a products array
 let productsArr = [];
-// console.log(productsArr);
 
 // creating a queue (for later use)
 let uniqueProducts = [];
@@ -64,35 +56,15 @@ let product17 = new Product ('Water Can', './Img/water-can.jpg');
 let product18 = new Product ('Wine Glass', './Img/wine-glass.jpg');
 let product19 = new Product ('Useless Boots', './Img/boots.jpg');
 
-// console logging each item in the productsArr array
-// console.log(productsArr);
-
-// -----------------------------------
-// 2. Create an algorithm that will randomly generate three unique product images from the images directory and display them side-by-side-by-side in the browser window.
-// -----------------------------------
-
 if (localStorage.getItem('products')) {
   let loadedProductsArr = localStorage.getItem('products');
-  // console.log(loadedProductsArr);
   productsArr = JSON.parse(loadedProductsArr);
-  // console.log(productsArr);
 }
-// console.log(productsArr);
 
 // creating a function to generate a random index from the productsArr
 function generateRandomProdIndex () {
   return Math.floor(Math.random() * productsArr.length);
 }
-
-// Assigning generateRandomProdIndex function to 3 separate product image variables
-// let index1 = generateRandomProdIndex();
-// let index2 = generateRandomProdIndex();
-// let index3 = generateRandomProdIndex();
-
-// testing for proper return values using console.log
-// console.log(`Product image 1 is: ${index1} 
-// Product image 2 is: ${index2} 
-// Product image 3 is: ${index3}`);
 
 // creating a function that renders 3 randomly generated product images
 
@@ -101,20 +73,15 @@ function renderProductImages () {
   while (uniqueProducts.length < 6 ) {
 
     let randomIndex = generateRandomProdIndex();
-    // console.log(`The random product is: ${productsArr[randomIndex].name}`);
 
     if(!uniqueProducts.includes(productsArr[randomIndex])) {
       uniqueProducts.push(productsArr[randomIndex]);
-      // console.log('the unique products are: ', uniqueProducts);
     }
   }
 
   let firstImageObject = uniqueProducts.shift();
   let secondImageObject = uniqueProducts.shift();
   let thirdImageObject = uniqueProducts.shift();
-
-  // console.log('The three unique images are :', firstImageObject.name, secondImageObject.name, thirdImageObject.name);
-  // console.log('The remain unique products after shifts is:', uniqueProducts);
 
   image1.src = firstImageObject.src;
   image1.alt = firstImageObject.name;
@@ -141,26 +108,20 @@ function handleClickedProduct(event) {
   for (let i = 0; i < productsArr.length; i++) {
     if (selection.alt.includes(productsArr[i].name)) {
       productsArr[i].clicked++;
-      // console.log(productsArr[i]);
     }
   }
 
   // Saving productArr to localStorage after every click
 
-  // console logging productsArr before saving (for visibility)
-  // console.log(productsArr);
+
 
   // declaring new variable and assigning it a stringified productsArr and console logging for testing
   let productsArrConvertedForLS = JSON.stringify(productsArr);
   let clickCounterConvertedForLS = JSON.stringify(clickCounter);
-  // console.log(productsArrConvertedForLS);
-  // console.log(clickCounterConvertedForLS);
 
   // setting productsArr into local storage with the name products as the key and console logging for testing
   localStorage.setItem('products', productsArrConvertedForLS);
   localStorage.setItem('userClicks', clickCounterConvertedForLS);
-  // console.log(localStorage.getItem('products'));
-  // console.log(localStorage.getItem('userClicks'));
 
   renderProductImages();
 
@@ -192,11 +153,6 @@ function handleViewResults() {
     views.push(productsArr[i].viewed);
     clicks.push(productsArr[i].clicked);
   }
-
-  //console log for testing
-  // console.log(names);
-  // console.log(views);
-  // console.log(clicks);
 
   // Chart sourced from "https://www.chartjs.org/docs/latest/getting-started/"
   // This chart will render the results of each images views and clicks in a bar graph
@@ -240,43 +196,3 @@ image2.addEventListener('click', handleClickedProduct);
 image3.addEventListener('click', handleClickedProduct);
 results.addEventListener('click', handleViewResults);
 
-
-// ideas for code:
-// add unique products to array
-//
-// .include();
-// .shift();
-// .pop();
-
-// // new function to render unique images on every iteration
-// function newImageRenderFunc () {
-
-//   // for loop to iterate through
-//   for (let i = 0; i < 3; i++) {
-
-//     // testing logs to keep track of image iteration
-//     console.log('----------------');
-//     console.log(`Image ${i+1}`);
-//     console.log('----------------');
-
-//     while (uniqueProducts.length < 6 ) {
-
-//       let randomIndex = generateRandomProdIndex();
-//       console.log(`The random product is: ${productsArr[randomIndex].name}`);
-
-//       if(!uniqueProducts.includes(productsArr[randomIndex])) {
-//         uniqueProducts.push(productsArr[randomIndex]);
-//         console.log('the unique products are: ', uniqueProducts);
-//       }
-//     }
-
-//     let firstImageObject = uniqueProducts.shift();
-//     let secondImageObject = uniqueProducts.shift();
-//     let thirdImageObject = uniqueProducts.shift();
-
-//     console.log('The three images are :', firstImageObject, secondImageObject, thirdImageObject);
-//     console.log('uniqueProducts after shifts is:', uniqueProducts);
-//   }
-// }
-
-// newImageRenderFunc();
